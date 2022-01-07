@@ -7,10 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-/**
- *
- * @author Marlon
- */
+
 
 @Repository
 /* En los genericos del JPARepository va en este orden: Objeto y el tipo de ID del objeto*/
@@ -21,4 +18,7 @@ public interface PersonaRepositorio extends JpaRepository<Persona, String> {
     
     @Query("select p from Persona p where p.ciudad.nombre = :q")
     List<Persona> findAllByCiudad(@Param("q") String q);
+    
+    @Query("select p from Persona p where p.dni = :dni")
+    Persona findByDni(@Param("q") String dni);
 }

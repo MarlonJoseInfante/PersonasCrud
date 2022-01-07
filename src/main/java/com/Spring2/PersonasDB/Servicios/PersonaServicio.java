@@ -28,6 +28,10 @@ public class PersonaServicio {
     @Transactional
     public Persona save(Persona persona) throws WebException{
         
+        if (findByDni(persona.getDni())!= null) {
+            throw new WebException("No se puede registrar a una persona con un dni que ya existe");
+        }
+        
         if (persona.getNombre().isEmpty() || persona.getNombre()== null || persona.getNombre().length()<3) {
             throw new WebException("El nombre no puede estar vacio o tener menos de 3 caracteres");
         }
@@ -36,6 +40,9 @@ public class PersonaServicio {
         }
         if (persona.getEdad()== null || persona.getEdad()<1) {
             throw new WebException("La edad no debe estar vacia y debe ser mayor o igual a 0");
+        }
+        if (persona.getDni()== null || persona.getDni().isEmpty()) {
+            throw new WebException("El dni no puede estar vacio");
         }
         if (persona.getCiudad()== null) {
             throw  new WebException("La ciudad no puede ser nula");
@@ -73,6 +80,12 @@ public class PersonaServicio {
     public Optional<Persona> findById(String id){
         return personaRepositorio.findById(id);
     }
+    
+    public Persona findByDni(String dni){
+        return personaRepositorio.findByDni(dni);
+    }
+    
+    
     @Transactional
     public void delete(Persona persona){
         personaRepositorio.delete(persona);

@@ -33,6 +33,7 @@
                         <thead>
                             <tr>
                                 <th>N°</th>
+                                <th>DNI</th>
                                 <th>Nombre</th>
                                 <th>Apellido</th>
                                 <th>Edad</th>
@@ -43,6 +44,7 @@
                         <tbody>
                             <tr th:each=" p,iterator: ${personas}">
                                 <td th:text="${iterator.index+1}"></td>
+                                <td th:text="${p.dni}"></td>
                                 <td th:text="${p.nombre}"></td>
                                 <td th:text="${p.apellido}"></td>
                                 <td th:text="${p.edad}"></td>
