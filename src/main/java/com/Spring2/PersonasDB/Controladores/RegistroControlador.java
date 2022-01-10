@@ -24,10 +24,10 @@ public class RegistroControlador {
     }
     
     @PostMapping("")
-    public String registroSave(Model model, @RequestParam String username, @RequestParam String password, @RequestParam String password2){
+    public String registroSave(Model model, @RequestParam String username, @RequestParam String password, @RequestParam String password2, @RequestParam String dni){
         //El redirect:/ hace que se redirija a la pagian de inicio, si solo estuviese sin la diagonal se dirige al main controller
         try {
-            usuarioServicio.save(username, password, password2);
+            usuarioServicio.save(username, password, password2,dni);
               return "redirect:/";
         } catch (WebException ex) {
             // Lo que se hace es pasar los errores a la vista

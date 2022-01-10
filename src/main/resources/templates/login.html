@@ -12,33 +12,25 @@
     <div th:if="${error}" class="alert alert-warning alert-dismissible fade show mt-3" role="alert">
           <strong th:text="${error}"></strong> 
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
+        </div>
     <div class="card mt-5">
       <div class="card-header d-flex justify-content-between">
-        <h1>Registro de Usuario</h1>
+        <h1>Login</h1>
         <button class="btn btn-dark px-5 py-2">
           <a th:href="@{/}">Volver</a>
         </button>
       </div>
-      <form th:action="@{/registro}" method="POST" class="col-8 mx-auto">
+      <form th:action="@{/logincheck}" method="POST" class="col-8 mx-auto">
         <div class="mb-3">
-          <label for="nombre" class="form-label">Nombre de usuario</label>
-          <input type="text" class="form-control" name="username"/>
+          <label for="username" class="form-label">Nombre de usuario</label>
+          <input type="text" class="form-control" name="username" th:value="${username}"/>
         </div>
         <div class="mb-3">
-          <label for="nombre" class="form-label">Ingrese Contraseña</label>
+          <label for="password" class="form-label">Ingrese Contraseña</label>
           <input type="password" class="form-control" name="password" />
         </div>
         <div class="mb-3">
-          <label for="nombre" class="form-label">Confirme Contraseña </label>
-          <input type="password" class="form-control" name="password2" />
-        </div>
-        <div class="mb-3">
-          <label for="nombre" class="form-label">DNI </label>
-          <input type="text" class="form-control" name="dni" />
-        </div>
-        <div class="mb-3">
-          <input type="submit" class="btn btn-primary" value="Guardar" />
+          <input type="submit" class="btn btn-primary" value="Ingresar" />
         </div>
       </form>
     </div>

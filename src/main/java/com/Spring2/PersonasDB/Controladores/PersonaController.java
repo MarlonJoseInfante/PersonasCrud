@@ -64,7 +64,11 @@ public class PersonaController {
             redirectAttributes.addFlashAttribute("success", "Persona guardada con exito");
         } catch (Exception ex) {
             /* El addFlash es capaz de mandar atributos a la redireccion*/
-            redirectAttributes.addFlashAttribute("error", ex.getMessage());
+            model.addAttribute("error", ex.getMessage());
+            model.addAttribute("persona", persona);
+            model.addAttribute("ciudad", ciudadServicio.listAll());
+            
+            return "persona-form";
         }
         return "redirect:/persona/lista";
     }

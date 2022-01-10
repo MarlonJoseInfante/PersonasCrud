@@ -6,9 +6,15 @@
 
 <body>
   <nav th:replace="/fragments/nav-bar :: nav-bar-dark"></nav>
-
-  <br />
   <div class="container">
+    <div th:if="${error}" class="alert alert-warning alert-dismissible fade show mt-3" role="alert">
+      <strong th:text="${error}"></strong>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <div th:if="${success}" class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+      <strong th:text="${success}"></strong>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
     <div class="card mt-5">
       <div class="card-header d-flex justify-content-between">
         <h1>Crear Persona</h1>
@@ -37,6 +43,10 @@
           <select th:field="*{ciudad.id}" class="form-select">
             <option th:each="c : ${ciudad}" th:text="${c.nombre}" th:value="${c.id}"></option>
           </select>
+        </div>
+        <div class="mb-3">
+          <label for="dni" class="form-label">DNI</label>
+          <input type="text" class="form-control" th:field="*{dni}" />
         </div>
         <div class="mb-3">
           <input type="submit" class="btn btn-primary" value="Guardar" />

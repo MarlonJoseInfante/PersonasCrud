@@ -64,6 +64,14 @@ public class Persona implements Serializable {
         this.apellido = apellido;
     }
 
+    public String getDni() {
+        return dni;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
+    }
+
     public Integer getEdad() {
         return edad;
     }

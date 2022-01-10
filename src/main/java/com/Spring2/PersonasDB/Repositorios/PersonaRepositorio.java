@@ -20,5 +20,5 @@ public interface PersonaRepositorio extends JpaRepository<Persona, String> {
     List<Persona> findAllByCiudad(@Param("q") String q);
     
     @Query("select p from Persona p where p.dni = :dni")
-    Persona findByDni(@Param("q") String dni);
+    Persona findByDni(@Param("dni") String dni);
 }
