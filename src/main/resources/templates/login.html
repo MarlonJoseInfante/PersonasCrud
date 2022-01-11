@@ -9,10 +9,14 @@
 
   <br />
   <div class="container">
-    <div th:if="${error}" class="alert alert-warning alert-dismissible fade show mt-3" role="alert">
+    <div th:if="${error}" class="alert alert-success alert-dismissible fade show mt-3" role="alert">
           <strong th:text="${error}"></strong> 
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
+    </div>
+    <div th:if="${param.logout}" class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+          <strong>Sesion Finalizada</strong> 
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
     <div class="card mt-5">
       <div class="card-header d-flex justify-content-between">
         <h1>Login</h1>

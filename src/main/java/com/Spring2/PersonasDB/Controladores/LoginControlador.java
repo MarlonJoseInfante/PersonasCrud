@@ -1,6 +1,7 @@
 
 package com.Spring2.PersonasDB.Controladores;
 
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,13 +13,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class LoginControlador {
     
     @GetMapping("")
-    public String login(Model model, @RequestParam(required = false) String error, @RequestParam (required = false) String username){
-        if (error != null) {
-            model.addAttribute("error", "El usuario o la contraseña ingresada son incorrectos");
+    //Model model, @RequestParam(required = false) String error, @RequestParam (required = false) String username
+    public String login(Model model, @RequestParam (required = false) String error, @RequestParam (required = false)
+            String username, @RequestParam (required=false) String logout){
+        if (error!= null) {
+        model.addAttribute("error", "El usuario o la contraseña son incorrectos");
+            
         }
-        if (username != null) {
-            model.addAttribute("error", username);
-        }
+        if (username!= null) {
+              model.addAttribute("username", username);
+            }
         return "login";
     }
+    
+    
 }

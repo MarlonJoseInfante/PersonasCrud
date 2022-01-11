@@ -1,7 +1,13 @@
 
 package com.Spring2.PersonasDB.Entidades;
 
+
+
+import com.Spring2.PersonasDB.Enums.Role;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+
 
 @Entity
 public class Usuario extends Persona{
@@ -11,7 +17,19 @@ public class Usuario extends Persona{
     /*Como tiene el mismo ID del padre no hace falta anotarlo*/
   
     private String username;
+  
     private String password;
+   @Enumerated(EnumType.STRING)
+   private Role rol;
+
+    public Role getRol() {
+        return rol;
+    }
+
+    public void setRol(Role rol) {
+        this.rol = rol;
+    }
+
 
     public String getUsername() {
         return username;

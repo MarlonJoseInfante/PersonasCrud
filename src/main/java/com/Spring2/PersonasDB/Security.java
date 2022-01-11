@@ -31,8 +31,9 @@ public class Security extends WebSecurityConfigurerAdapter{
 // Configuracion de las peticiones http
 
     @Override
+//    "/css/*","/img/*","/js/*"
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers("/css/*","/img/*","/js/*").permitAll()
+        http.authorizeRequests().antMatchers("/css/*","/img/*","/js/*","/templates/*","/templates.fragments/*").permitAll()
                 .and().formLogin()
                       .loginPage("/login")
                       .usernameParameter("username")
@@ -43,8 +44,8 @@ public class Security extends WebSecurityConfigurerAdapter{
                       .permitAll()
                 .and().logout()
                       .logoutUrl("/logout")
-                      .logoutSuccessUrl("/login")
-                .and().csrf();
+                      .logoutSuccessUrl("/login?logout")
+                .and().csrf().disable();
     }
     
 }

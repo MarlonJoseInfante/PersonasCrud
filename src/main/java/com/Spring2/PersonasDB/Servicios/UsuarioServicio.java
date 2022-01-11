@@ -2,6 +2,7 @@ package com.Spring2.PersonasDB.Servicios;
 
 import com.Spring2.PersonasDB.Entidades.Persona;
 import com.Spring2.PersonasDB.Entidades.Usuario;
+import com.Spring2.PersonasDB.Enums.Role;
 import com.Spring2.PersonasDB.Excepciones.WebException;
 import com.Spring2.PersonasDB.Repositorios.UsuarioRepositorio;
 import java.util.ArrayList;
@@ -61,6 +62,7 @@ public class UsuarioServicio implements UserDetailsService {
         usuario.setDni(persona.getDni());
         usuario.setUsername(username);
         usuario.setPassword(encoder.encode(password));
+        usuario.setRol(Role.USER);
         personaServicio.delete(persona);
         return usuarioRepositorio.save(usuario);
 
@@ -84,11 +86,11 @@ public class UsuarioServicio implements UserDetailsService {
     //El siguiente metodo se usara cuando un usuario se quiera loguear
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         try {
-            Usuario usuario= new Usuario();
+            Usuario usuario= usuarioRepositorio.findByUsername(username);
             User user;
-            List<GrantedAuthority> authorities= new ArrayList<>();
-            authorities.add(new SimpleGrantedAuthority(username));
-            return new User(username, usuario.getPassword(),authorities);
+            List<GrantedAuthority> authorities = new ArrayList();
+            authorities.add(new SimpleGrantedAuthority("ROLE_"+usuario.getRol()));
+            return new User(username, usuario.getPassword(), authorities);
         } catch (Exception e) {
             throw new UsernameNotFoundException("El usuario no existe");
         }

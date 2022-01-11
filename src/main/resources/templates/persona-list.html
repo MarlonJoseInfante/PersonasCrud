@@ -50,8 +50,8 @@
                                 <td th:text="${p.edad}"></td>
                                 <td th:text="${p.ciudad} == null ? 'no tiene' : ${p.ciudad.nombre} "></td>
                                 <td>
-                                   <a th:href="@{/persona/delete}+'?id='+${p.id}" class="btn btn-primary">Eliminar</a>
-                                   <a th:href="@{/persona/form}+'?id='+${p.id}" class="btn btn-secondary">Editar</a>
+                                   <a th:href="@{/persona/delete}+'?id='+${p.id}" class="btn btn-primary" sec:authorize="hasRole('ROLE_ADMIN')">Eliminar</a>
+                                   <a th:href="@{/persona/form}+'?id='+${p.id}" class="btn btn-secondary" sec:authorize="hasRole('ROLE_ADMIN')">Editar</a>
                                 </td>
                             </tr>
             

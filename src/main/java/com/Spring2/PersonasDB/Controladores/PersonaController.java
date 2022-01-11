@@ -7,6 +7,7 @@ import com.Spring2.PersonasDB.Servicios.PersonaServicio;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,6 +32,7 @@ public class PersonaController {
     @Autowired
     private CiudadServicio ciudadServicio;
 
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     @GetMapping("/lista")
     public String listarPersonas(Model model, @RequestParam(required = false)String q) {
         if (q!=null) {
